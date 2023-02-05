@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\Sliding_Puzzle">
+      <UniqueIdentifier>{30d9e348-37be-4e42-bd08-1390a971e748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Snakes_And_Ladders">
+      <UniqueIdentifier>{f9a4b4ac-fc3f-4ed1-9d26-5ade3199914c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\DisplayTableFoodOrders">
+      <UniqueIdentifier>{62f770e8-4a9c-4e48-90e6-4b394b6057e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Binary_Subarrays_With_Sum">
+      <UniqueIdentifier>{81a1508e-12ab-4ae1-96f5-a61032281213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Time_Based_Key-Value_Store">
+      <UniqueIdentifier>{9ae4abf2-9faa-469a-ba7f-f7421026d730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\H-Index">
+      <UniqueIdentifier>{0e066f97-e0d9-43d1-9e9d-278d456ba7c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Arithmetic_Slices">
+      <UniqueIdentifier>{98c7a6c9-f08a-41d4-b52c-be6aa60efe81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Escape_The_Ghosts">
+      <UniqueIdentifier>{caf53d4a-258c-446f-8b1a-fd79a978768a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Perfect_Rectangle">
+      <UniqueIdentifier>{f7062eba-ad8f-4ffb-bb64-13d4593cb539}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SlidingPuzzle.h">
+      <Filter>头文件\Sliding_Puzzle</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakesAndLadders.h">
+      <Filter>头文件\Snakes_And_Ladders</Filter>
+    </ClInclude>
+    <ClInclude Include="Food_Orders_Restaurant.h">
+      <Filter>头文件\DisplayTableFoodOrders</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary_Subarrays_With_Sum.h">
+      <Filter>头文件\Binary_Subarrays_With_Sum</Filter>
+    </ClInclude>
+    <ClInclude Include="Time_Based_Key-Value_Store.h">
+      <Filter>头文件\Time_Based_Key-Value_Store</Filter>
+    </ClInclude>
+    <ClInclude Include="H-Index.h">
+      <Filter>头文件\H-Index</Filter>
+    </ClInclude>
+    <ClInclude Include="Arithmetic_Slices.h">
+      <Filter>头文件\Arithmetic_Slices</Filter>
+    </ClInclude>
+    <ClInclude Include="Escape_The_Ghosts.h">
+      <Filter>头文件\Escape_The_Ghosts</Filter>
+    </ClInclude>
+    <ClInclude Include="Perfect_Rectangle.h">
+      <Filter>头文件\Perfect_Rectangle</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
