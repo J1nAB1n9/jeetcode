@@ -23,5 +23,5 @@ func TestDemo1(t *testing.T) {
 // [2 3 1 0 4 5 7]
 func TestDemo2(t *testing.T) {
 	fmt.Println(circularPermutation(3, 2))
-	fmt.Println(circularPermutation2(3, 2))
+	//fmt.Println(circularPermutation2(3, 2))
 }
