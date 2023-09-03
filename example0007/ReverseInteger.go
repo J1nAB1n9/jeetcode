@@ -8,6 +8,14 @@ func init() {
 	maxNum = fmt.Sprintf("%d", 0x7FFFFFFF)
 }
 
+/*
+	这题追求不了双百了。。。
+
+	题目说 假设环境不允许存储 64 位整数（有符号或无符号）。
+
+	但是双百的代码都是直接用结果值和(1 << 31)比较，显然是违背题意的
+
+*/
 func reverse(x int) int {
 	var zs bool
 	size := len(maxNum)
