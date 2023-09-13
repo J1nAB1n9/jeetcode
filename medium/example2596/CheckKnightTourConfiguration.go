@@ -18,6 +18,10 @@ func checkValidGrid(grid [][]int) bool {
 	size := len(grid)
 	nodes := make([]node, size*size)
 
+	if grid[0][0] != 0 {
+		return false
+	}
+
 	for i := 0; i < size; i++ {
 		for j := 0; j < size; j++ {
 			index := grid[i][j]
@@ -26,10 +30,7 @@ func checkValidGrid(grid [][]int) bool {
 		}
 	}
 
-	ju := node{
-		x: 0,
-		y: 0,
-	}
+	ju := node{0, 0}
 
 	for i := 1; i < len(nodes); i++ {
 		if !ju.IsRight(nodes[i]) {
