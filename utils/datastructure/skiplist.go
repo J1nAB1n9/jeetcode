@@ -111,6 +111,52 @@ func (sl SkipListInteger) SelectValueByKey(key int) (int, bool) {
 	return -1, false
 }
 
+func (sl *SkipListInteger) getPreNode(key int) *SkipListIntegerNode {
+	node := sl.head
+
+	for node != nil {
+		if node.next == nil && node.down == nil {
+			break
+		}
+
+		if node.next != nil && node.next.key == key {
+			return node
+		}
+
+		if node.next == nil || node.next.key < key {
+			node = node.down
+			continue
+		}
+		node = node.next
+	}
+
+	return nil
+}
+
+func (sl *SkipListInteger) Delete(key int) bool {
+	n := sl.getPreNode(key)
+	if n == nil {
+		return false
+	}
+
+	nd := n.next
+	if nd == nil || nd.key != key {
+		return false
+	}
+	n.next = nd.next
+
+	for nd.down != nil {
+		nd = nd.down
+		n = n.down
+		for n.next != nil && n.next.key != nd.key {
+			n = n.next
+		}
+
+		n.next = nd.next
+	}
+
+	return true
+}
 func (sl *SkipListInteger) PrintfInfo() {
 	head := sl.head
 	for i := 0; i < sl.curLevel && head != nil; i++ {
