@@ -10,6 +10,7 @@ const (
 
 type index struct {
 	i, j int
+	ans  int
 }
 
 var nl = []int{1, 0, -1, 0}
@@ -33,14 +34,14 @@ func maximumMinutes(grid [][]int) int {
 	}
 
 	n, m := len(grid), len(grid[0])
-	safeTime := make(map[index]int)
+	safeTime := make(map[int]int)
 
 	var flameQueue []index
 	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
 			if grid[i][j] == Flame {
 				fire := index{i: i, j: j}
-				safeTime[fire] = 0
+				safeTime[fire.i*1000+fire.j] = 0
 				flameQueue = append(flameQueue, fire)
 			}
 		}
@@ -66,23 +67,24 @@ func maximumMinutes(grid [][]int) int {
 				j: y,
 			}
 
-			if _, ok := safeTime[nextTime]; ok {
+			if _, ok := safeTime[nextTime.i*1000+nextTime.j]; ok {
 				continue
 			}
 
-			safeTime[nextTime] = safeTime[flameIndex] + 1
+			safeTime[nextTime.i*1000+nextTime.j] = safeTime[flameIndex.i*1000+flameIndex.j] + 1
 			flameQueue = append(flameQueue, nextTime)
 		}
 	}
 
 	flameQueue = flameQueue[:0]
-	begin := index{0, 0}
+	begin := index{0, 0, 0xfffffffe}
 	flameQueue = append(flameQueue, begin)
 
 	safeLeave := false
-	ans := 0xfffffffe
-	hereTime := make(map[index]int)
-	hereTime[begin] = 0
+	var ansNode index
+	// ans := 0xfffffffe
+	hereTime := make(map[int]int)
+	hereTime[begin.i*1000+begin.j] = 0
 	for len(flameQueue) != 0 {
 		nowPos := flameQueue[0]
 		flameQueue = flameQueue[1:]
@@ -90,8 +92,9 @@ func maximumMinutes(grid [][]int) int {
 			x := nowPos.i + nl[k]
 			y := nowPos.j + ml[k]
 			nextPos := index{
-				i: x,
-				j: y,
+				i:   x,
+				j:   y,
+				ans: nowPos.ans,
 			}
 			if !checkGrid(x, y, n, m) {
 				continue
@@ -102,39 +105,55 @@ func maximumMinutes(grid [][]int) int {
 			}
 
 			// 已经维护过
-			if _, ok := hereTime[nextPos]; ok {
-				continue
+			if _, ok := hereTime[nextPos.i*1000+nextPos.j]; ok {
+				if x != n-1 || y != m-1 {
+					continue
+				}
 			}
 
-			nextTime := hereTime[nowPos] + 1
-			if fireTime, has := safeTime[nextPos]; has {
-				if nextTime >= fireTime {
+			nextTime := hereTime[nowPos.i*1000+nowPos.j] + 1
+			if fireTime, has := safeTime[nextPos.i*1000+nextPos.j]; has {
+				if nextTime > fireTime {
+					continue
+				} else if nextTime == fireTime && (x != n-1 || y != m-1) {
 					continue
 				}
 
-				if (fireTime - nextTime) < ans {
-					ans = fireTime - nextTime
+				if (fireTime - nextTime) < nextPos.ans {
+					nextPos.ans = fireTime - nextTime
+					if x == n-1 && y == m-1 {
+						nextPos.ans = nextPos.ans + 1
+					}
 				}
 			}
 
-			hereTime[nextPos] = nextTime
-			flameQueue = append(flameQueue, nextPos)
+			hereTime[nextPos.i*1000+nextPos.j] = nextTime
+
 			if x == n-1 && y == m-1 {
-				safeLeave = true
-				break
+				if safeLeave == false {
+					safeLeave = true
+					ansNode = nextPos
+				} else if ansNode.ans < nextPos.ans {
+					ansNode = nextPos
+				}
+
+				// break
+			} else {
+				flameQueue = append(flameQueue, nextPos)
 			}
 		}
-		if safeLeave {
-			break
-		}
+		//if safeLeave {
+		//	break
+		//}
 	}
 
 	if !safeLeave {
 		return -1
-	} else if ans == 0xfffffffe {
+	} else if ansNode.ans == 0xfffffffe {
 		return noAns
 	}
-	return ans
+
+	return ansNode.ans - 1
 }
 
 func MainFunc(g [][]int) int {
