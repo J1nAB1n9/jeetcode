@@ -85,6 +85,12 @@ func minimumTotalPrice(n int, edges [][]int, price []int, trips [][]int) int {
 			}
 		}
 
+		h := n1.high
+		if h%2 == 0 {
+			anso += price[n1.val]
+		} else {
+			anst += price[n1.val]
+		}
 	}
 
 	if anso > anst {
