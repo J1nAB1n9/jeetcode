@@ -6,19 +6,27 @@ func reverseOddLevels(root *TreeNode) *TreeNode {
 
 	for size < len(queue) {
 		node := queue[size]
+		size++
 		if node.Left == nil {
 			continue
 		}
 
 		queue = append(queue, node.Left, node.Right)
-		size++
 	}
 
-	for i := 0; (1 << i) < size; i += 2 {
-		leftIndex := 1 << i
-		rightIndex := (1 << (i + 1)) - 1
-		if rightIndex >= size {
-			rightIndex = size - 1
+	time := 0
+	leftIndex := 0
+	rightIndex := 0
+	for true {
+		leftIndex = leftIndex*2 + 1
+		rightIndex = rightIndex*2 + 2
+		time++
+		if time%2 == 0 {
+			continue
+		}
+
+		if leftIndex >= size || rightIndex >= size {
+			break
 		}
 
 		tmp := queue[leftIndex : rightIndex+1]
@@ -30,7 +38,8 @@ func reverseOddLevels(root *TreeNode) *TreeNode {
 	}
 
 	for i, v := range queue {
-		if i*2+1 < len(queue) {
+		//fmt.Printf("%d ", v.Val)
+		if i*2+1 >= len(queue) {
 			v.Left = nil
 			v.Right = nil
 			continue
