@@ -1,5 +1,7 @@
 package example1671
 
+import "fmt"
+
 func getMax(a, b int) int {
 	if b > a {
 		return b
@@ -27,8 +29,8 @@ func minimumMountainRemovals(nums []int) int {
 		}
 	}
 
-	//fmt.Printf("dp1:%v\n", dp1)
-	//fmt.Printf("dp2:%v\n", dp2)
+	fmt.Printf("dp1:%v\n", dp1)
+	fmt.Printf("dp2:%v\n", dp2)
 
 	ans := 0
 	for i := 1; i < len(nums)-1; i++ {

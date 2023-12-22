@@ -29,3 +29,7 @@ func TestExample1(t *testing.T) {
 func TestExample2(t *testing.T) {
 	fmt.Println(minimumMountainRemovals([]int{2, 1, 1, 5, 6, 2, 3, 1}))
 }
+
+func TestExample3(t *testing.T) {
+	fmt.Println(minimumMountainRemovals([]int{100, 92, 89, 77, 74, 66, 64, 66, 64}))
+}
