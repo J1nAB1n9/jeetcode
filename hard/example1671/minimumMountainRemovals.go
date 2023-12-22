@@ -34,6 +34,10 @@ func minimumMountainRemovals(nums []int) int {
 
 	ans := 0
 	for i := 1; i < len(nums)-1; i++ {
+		// 正序和逆序都不能为零
+		if dp1[i]*dp2[i] == 0 {
+			continue
+		}
 		ans = getMax(ans, dp1[i]+dp2[i]+1)
 	}
 
