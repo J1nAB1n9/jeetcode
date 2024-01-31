@@ -42,17 +42,23 @@ func minOperations(nums []int, queries []int) []int64 {
 
 		return l
 	}
-	var ans []int64
-	for _, q := range queries {
-		qi := search(q)
-		if nums[qi] > q {
-
-		} else {
-			v1 := abs(sumArr[qi] - int64((qi+1))*int64(q))
-			v2 := abs(sumArr[qi]) - int64((qi+1))*int64(q))
+	ans := make([]int64, len(queries))
+	for i, q := range queries {
+		if nums[0] > q || q > nums[len(nums)-1] {
+			ans[i] = abs(sumArr[len(nums)-1] - int64(q*(len(nums))))
+			continue
 		}
 
+		qi := search(q)
+		if nums[qi] > q {
+			v1 := abs(sumArr[qi-1] - int64(qi)*int64(q))
+			v2 := abs((sumArr[len(nums)-1] - sumArr[qi-1]) - int64(len(nums)-qi)*int64(q))
+			ans[i] = v1 + v2
+		} else {
+			v1 := abs(sumArr[qi] - int64((qi+1))*int64(q))
+			v2 := abs((sumArr[len(nums)-1] - sumArr[qi]) - int64(len(nums)-(qi+1))*int64(q))
+			ans[i] = v1 + v2
+		}
 	}
-
 	return ans
 }
