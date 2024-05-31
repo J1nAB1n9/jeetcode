@@ -63,6 +63,11 @@ func maximumLength(s string) int {
 
 	ans := -1
 	for i, s := range ss {
+		if ans >= s.n {
+			// 这种情况肯定是已经满足
+			return ans
+		}
+
 		if s.n >= 3 {
 			ans = getMax(ans, s.n-2)
 		}
